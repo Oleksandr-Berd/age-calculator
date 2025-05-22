@@ -6,6 +6,8 @@ margin-right: 16px;
 
 padding-top: 48px;
 padding-bottom: 48px;
+padding-left: 24px;
+padding-right: 24px;
 
 background-color: #fff;
 

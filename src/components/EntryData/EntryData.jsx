@@ -1,9 +1,9 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-import * as SC from "./EntryDataStyled"
+import * as SC from "./EntryDataStyled";
 
-import submitIcon from "../../assets/images/icon-arrow.svg"
+import submitIcon from "../../assets/images/icon-arrow.svg";
 import Line from "../../utils/line";
 
 const today = new Date();
@@ -60,29 +60,29 @@ const EntryData = () => {
     >
       {({ isSubmitting }) => (
         <Form>
-          <div>
-            <label htmlFor="day">day</label>
-            <Field type="day" name="day" />
-            <ErrorMessage name="day" component="div" className="error" />
-          </div>
+          <SC.DataConCustom>
+            <div>
+              <label htmlFor="day">day</label>
+              <SC.FieldCustom type="day" name="day" />
+              <ErrorMessage style={{ color: 'red' }} name="day" component="div" className="error" />
+            </div>
 
-          <div>
-            <label htmlFor="months">month</label>
-            <Field type="months" name="month" />
-            <ErrorMessage name="months" component="div" className="error" />
-          </div>
+            <div>
+              <label htmlFor="months">month</label>
+              <SC.FieldCustom type="months" name="month" />
+              <ErrorMessage style={{ color: 'red' }} name="months" component="div" className="error" />
+            </div>
 
+            <div>
+              <label htmlFor="year">year</label>
+              <SC.FieldCustom type="year" name="year" />
+              <ErrorMessage style={{ color: 'red' }} name="year" component="div" className="error" />
+            </div>
+          </SC.DataConCustom>
           <div>
-            <label htmlFor="year">year</label>
-            <Field type="year" name="year" />
-            <ErrorMessage name="year" component="div" className="error" />
-          </div>
-          <div>
-            <Line/>
             <SC.ButtonCustom type="submit" disabled={isSubmitting}>
               <img src={submitIcon} alt="submit" />
             </SC.ButtonCustom>
-            <Line/>
           </div>
         </Form>
       )}
