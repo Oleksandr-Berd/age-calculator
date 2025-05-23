@@ -9,6 +9,11 @@ desktop 1280px */
   src: url("/fonts/Poppins-Bold.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Italic";
+  src: url("./assets/fonts/Poppins-ExtraBoldItalic.ttf") format("truetype");
+}
+
 body{
   margin: 0;
 }

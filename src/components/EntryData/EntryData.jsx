@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import * as SC from "./EntryDataStyled";
 
 import submitIcon from "../../assets/images/icon-arrow.svg";
-import Line from "../../utils/line";
 
 const today = new Date();
 
@@ -46,44 +45,95 @@ const validationSchema = Yup.object()
     }
   );
 
-const EntryData = () => {
+const EntryData = ({ handleData }) => {
   return (
     <Formik
       initialValues={{ day: "", months: "", year: "" }}
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 500);
+        handleData(values); // This line sends data back to parent
+        setSubmitting(false);
       }}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, errors, touched }) => (
         <Form>
           <SC.DataConCustom>
             <div>
-              <label htmlFor="day">day</label>
-              <SC.FieldCustom type="day" name="day" />
-              <ErrorMessage style={{ color: 'red' }} name="day" component="div" className="error" />
+              <label
+                style={errors.day && touched.day ? { color: "red" } : {}}
+                htmlFor="day"
+              >
+                day
+              </label>
+              <SC.FieldCustom
+                type="day"
+                name="day"
+                style={
+                  errors.day && touched.day ? { border: "1px solid red" } : {}
+                }
+                placeholder="DD"
+              />
+              <ErrorMessage
+                style={{ color: "red" }}
+                name="day"
+                component="div"
+                className="error"
+              />
             </div>
 
             <div>
-              <label htmlFor="months">month</label>
-              <SC.FieldCustom type="months" name="month" />
-              <ErrorMessage style={{ color: 'red' }} name="months" component="div" className="error" />
+              <label
+                style={errors.months && touched.months ? { color: "red" } : {}}
+                htmlFor="months"
+              >
+                month
+              </label>
+              <SC.FieldCustom
+                type="months"
+                name="months"
+                style={
+                  errors.months && touched.months
+                    ? { border: "1px solid red" }
+                    : {}
+                }
+                placeholder="MM"
+              />
+              <ErrorMessage
+                style={{ color: "red" }}
+                name="months"
+                component="div"
+                className="error"
+              />
             </div>
 
             <div>
-              <label htmlFor="year">year</label>
-              <SC.FieldCustom type="year" name="year" />
-              <ErrorMessage style={{ color: 'red' }} name="year" component="div" className="error" />
+              <label
+                style={errors.year && touched.year ? { color: "red" } : {}}
+                htmlFor="year"
+              >
+                year
+              </label>
+              <SC.FieldCustom
+                type="year"
+                name="year"
+                style={
+                  errors.year && touched.year ? { border: "1px solid red" } : {}
+                }
+                placeholder="YY"
+              />
+              <ErrorMessage
+                style={{ color: "red" }}
+                name="year"
+                component="div"
+                className="error"
+              />
             </div>
           </SC.DataConCustom>
-          <div>
+          <SC.ButtonConCustom>
             <SC.ButtonCustom type="submit" disabled={isSubmitting}>
               <img src={submitIcon} alt="submit" />
             </SC.ButtonCustom>
-          </div>
+          </SC.ButtonConCustom>
         </Form>
       )}
     </Formik>
